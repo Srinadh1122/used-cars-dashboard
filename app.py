@@ -5,9 +5,16 @@ import seaborn as sns
 
 st.title("🚗 Used Cars Data Analysis Dashboard")
 
-# Load CSV properly (your header is stored as data)
-df = pd.read_csv("vehicles_small.csv", header=None, sep=",", engine="python")
+df = pd.read_csv("vehicles_small.csv", header=None)
+
+# If it loads as 1 column, split it manually
+if df.shape[1] == 1:
+    df = df[0].str.split(",", expand=True)
+
 df.columns = ["price","year","manufacturer","odometer","fuel","transmission"]
+
+# Remove header row if present
+df = df[df["price"] != "price"]
 
 
 # Drop first row (it contains header text)
@@ -65,4 +72,5 @@ st.pyplot(fig4)
 # Show data
 st.subheader("Sample Data")
 st.dataframe(filtered.head(20))
+
 
