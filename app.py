@@ -8,7 +8,8 @@ st.set_page_config(page_title="Used Cars Dashboard", layout="wide")
 st.title("🚗 Used Cars Data Analysis Dashboard")
 
 # Load data
-df = pd.read_csv("vehicles.csv")
+df = pd.read_csv("vehicles_small.csv")
+
 
 # Keep only useful columns
 df = df[["price", "year", "manufacturer", "odometer", "fuel", "transmission"]]
@@ -67,3 +68,4 @@ st.pyplot(fig4)
 # Show data
 st.subheader("Sample Data")
 st.dataframe(filtered.head(20))
+
