@@ -21,9 +21,11 @@ df = df[df["price"] != "price"]
 df = df.iloc[1:]
 
 # Convert types
-df["price"] = df["price"].astype(float)
-df["year"] = df["year"].astype(int)
-df["odometer"] = df["odometer"].astype(float)
+df["price"] = pd.to_numeric(df["price"], errors="coerce")
+df["year"] = pd.to_numeric(df["year"], errors="coerce")
+df["odometer"] = pd.to_numeric(df["odometer"], errors="coerce")
+
+df = df.dropna()
 
 st.write("Columns:", df.columns)
 st.dataframe(df.head())
@@ -72,5 +74,6 @@ st.pyplot(fig4)
 # Show data
 st.subheader("Sample Data")
 st.dataframe(filtered.head(20))
+
 
 
