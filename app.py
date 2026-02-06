@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 st.title("🚗 Used Cars Data Analysis Dashboard")
 
 # Load data
-df = pd.read_excel("vehicles_small.xls")
+df = pd.read_excel("vehicles_small.csv")
 
 st.write(df.columns)  # debug once
 
@@ -70,6 +70,7 @@ st.pyplot(fig4)
 # Show data
 st.subheader("Sample Data")
 st.dataframe(filtered.head(20))
+
 
 
 
