@@ -1,19 +1,21 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
-
-st.set_page_config(page_title="Used Cars Dashboard", layout="wide")
 
 st.title("🚗 Used Cars Data Analysis Dashboard")
 
 # Load data
-df = pd.read_csv("vehicles_small.csv")
+df = pd.read_excel("vehicles_small.xls")
 
+st.write(df.columns)  # debug once
 
-# Keep only useful columns
-df = df[["price", "year", "manufacturer", "odometer", "fuel", "transmission"]]
+# Keep only useful columns safely
+needed_cols = ["price", "year", "manufacturer", "odometer", "fuel", "transmission"]
+available_cols = [c for c in needed_cols if c in df.columns]
+df = df[available_cols]
+
 df = df.dropna()
+
 
 # Remove unrealistic values
 df = df[(df["price"] >= 500) & (df["price"] <= 200000)]
@@ -68,6 +70,7 @@ st.pyplot(fig4)
 # Show data
 st.subheader("Sample Data")
 st.dataframe(filtered.head(20))
+
 
 
 
