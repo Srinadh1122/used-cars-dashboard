@@ -5,9 +5,12 @@ import matplotlib.pyplot as plt
 st.title("🚗 Used Cars Data Analysis Dashboard")
 
 # Load data
-df = pd.read_excel("vehicles_small.csv")
+df = pd.read_csv("vehicles_small.csv")
 
 st.write(df.columns)  # debug once
+st.write(df.columns)
+
+st.dataframe(df.head())
 
 # Keep only useful columns safely
 needed_cols = ["price", "year", "manufacturer", "odometer", "fuel", "transmission"]
@@ -70,6 +73,7 @@ st.pyplot(fig4)
 # Show data
 st.subheader("Sample Data")
 st.dataframe(filtered.head(20))
+
 
 
 
